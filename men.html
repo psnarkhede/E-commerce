@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #parent{
+            padding:20px;
+            background-color:aqua;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button{
+            background-color: blueviolet;
+            padding:10px 20px 10px 20px;
+            font-size: 25px;
+            border-radius: 5px;
+        }
+
+        h1{
+            text-align: center;
+        }        
+
+        #container{
+            margin:auto;
+            width:auto;
+            display:grid;
+            grid-template-columns: repeat(4,1fr);
+            
+        }
+        .box{
+            margin: auto;
+            box-sizing: border-box;
+            padding: 15px;
+        }
+        .base{
+            display:flex;
+            gap:30px; 
+        }
+
+        strike{
+            margin-top: 25px;
+        }
+
+        .gc{
+            font-size: 18px;
+            background-color: crimson;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent"></div>
+
+    <h1>Mens Page</h1>
+
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+
+    var home = document.createElement("button");
+    home.innerText = "Home";
+    home.addEventListener("click",homefn)
+    function homefn(){
+        window.location.href = "index.html";
+    }
+
+    var men = document.createElement("button");
+    men.innerText = "Men";
+    men.addEventListener("click",menfn)
+    function menfn() {
+        window.location.href = "men.html";
+    }
+
+    var women = document.createElement("button");
+    women.innerText = "Women";
+    women.addEventListener("click",womenfn)
+    function womenfn(){
+        window.location.href = "women.html";
+    }
+
+    var signup = document.createElement("button");
+    signup.innerText = "SignUp"
+    signup.addEventListener("click",signupfn)
+    function signupfn(){
+        window.location.href = "Signup.html";
+    }
+
+    var signin = document.createElement("button");
+    signin.innerText = "SignIn"
+    signin.addEventListener("click",signinfn)
+    function signinfn(){
+        window.location.href = "signin.html";
+    }
+
+    var gotocart = document.createElement("button");
+    gotocart.innerText = "Go to Cart";
+    gotocart.addEventListener("click",gotofn)
+    function gotofn(){
+        window.location.href = "cart.html";
+    }
+
+    document.querySelector("#parent").append(home,men,women,signup,signin,gotocart);
+
+    /*************************************/
+
+    var data = [
+    {
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi1.jpg.pagespeed.ic.mkSk-Af1ka.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"25.00",
+        strikedOffPrice:"$95.00"
+    },{
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi2.jpg.pagespeed.ic.uBrpABaJqp.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"35.00",
+        strikedOffPrice:"$100.00"
+    },{
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi3.jpg.pagespeed.ic.iO_cFEPy2K.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"35.00",
+        strikedOffPrice:"$100.00"
+    },
+    {
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi4.jpg.pagespeed.ic.kmiQW8I5wx.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"35.00",
+        strikedOffPrice:"$100.00"
+    }
+];
+
+   var cartdata = JSON.parse(localStorage.getItem("cart")) || [];
+
+    data.map(function(el){
+        var box = document.createElement("div");
+        box.setAttribute("class","box")
+
+        var img = document.createElement("img");
+        img.src=el.imgUrl;
+
+        var name = document.createElement("p");
+        name.innerText = el.name;
+
+        var pricediv = document.createElement("div");
+        pricediv.setAttribute("class","base");
+
+        var price = document.createElement("h2");
+        price.innerText=el.price;
+        
+        var strikedOffPrice = document.createElement("strike");
+        strikedOffPrice.innerText=el.strikedOffPrice;
+
+        var btn = document.createElement("button");
+        btn.innerText="Add to Cart";
+        btn.setAttribute("class","gc")
+        btn.addEventListener("click",function(){
+            addfunction(el)
+        })
+
+        pricediv.append(price,strikedOffPrice);
+        box.append(img,name,pricediv,btn);
+
+        document.querySelector("#container").append(box);
+    })
+
+    function addfunction(el){
+        cartdata.push(el);
+        localStorage.setItem("cart",JSON.stringify(cartdata))
+    }
+</script>

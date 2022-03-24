@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            padding:20px;
+            background-color:aqua;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button{
+            background-color: blueviolet;
+            padding:10px 20px 10px 20px;
+            font-size: 25px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            color:crimson;
+            font-size: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            color:goldenrod;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent"></div>
+
+    <h1> Welcome To Anything.com </h1>
+    <h2>SignUp first</h2>
+</body>
+</html>
+
+<script>
+    var men = document.createElement("button");
+    men.innerText = "Men";
+    men.addEventListener("click",menfn)
+    function menfn() {
+        window.location.href = "men.html";
+    }
+
+    var women = document.createElement("button");
+    women.innerText = "Women";
+    women.addEventListener("click",womenfn)
+    function womenfn(){
+        window.location.href = "women.html";
+    }
+
+    var signup = document.createElement("button");
+    signup.innerText = "SignUp"
+    signup.addEventListener("click",signupfn)
+    function signupfn(){
+        window.location.href = "Signup.html";
+    }
+
+    var signin = document.createElement("button");
+    signin.innerText = "SignIn"
+    signin.addEventListener("click",signinfn)
+    function signinfn(){
+        window.location.href = "signin.html";
+    }
+
+
+    document.querySelector("#parent").append(men,women,signup,signin);
+
+    
+</script>

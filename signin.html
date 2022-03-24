@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            padding:20px;
+            background-color:aqua;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button{
+            background-color: blueviolet;
+            padding:10px 20px 10px 20px;
+            font-size: 25px;
+            border-radius: 5px;
+        }
+
+        body{
+            margin:auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent"></div>
+
+    <h1>SignIn Page</h1>
+
+    <form>
+        <form>
+            <input type="text" placeholder="enter email" id="email"/>
+            <input type="text" placeholder="set password" id="password"/>
+            <input type="submit" value="Log In"/>
+        </form>
+    </form>
+</body>
+</html>
+
+<script>
+
+    var home = document.createElement("button");
+    home.innerText = "Home";
+    home.addEventListener("click",homefn)
+    function homefn(){
+        window.location.href = "index.html";
+    }
+
+    var men = document.createElement("button");
+    men.innerText = "Men";
+    men.addEventListener("click",menfn)
+    function menfn() {
+        window.location.href = "men.html";
+    }
+
+    var women = document.createElement("button");
+    women.innerText = "Women";
+    women.addEventListener("click",womenfn)
+    function womenfn(){
+        window.location.href = "women.html";
+    }
+
+    var signup = document.createElement("button");
+    signup.innerText = "SignUp"
+    signup.addEventListener("click",signupfn)
+    function signupfn(){
+        window.location.href = "Signup.html";
+    }
+
+    var signin = document.createElement("button");
+    signin.innerText = "SignIn"
+    signin.addEventListener("click",signinfn)
+    function signinfn(){
+        window.location.href = "signin.html";
+    }
+
+    
+
+    document.querySelector("#parent").append(home,men,women,signup,signin,);
+
+
+
+
+/***********************************************************************/
+    document.querySelector("form").addEventListener("submit", submitfn)
+    
+    function submitfn() {
+        event.preventDefault();
+        
+        var inputemail = document.querySelector("#email").value;
+        var inputpassword = document.querySelector("#password").value;
+
+        var storeddata = JSON.parse(localStorage.getItem("signupdata"))
+
+        for(var i = 0; i < storeddata.length; i++){
+            if(inputemail == storeddata[i].email && inputpassword == storeddata[i].password){
+                alert("Login Successfull");
+                window.location.href = "men.html";
+                break;
+            }else{
+                alert("Login Failed");
+                break;
+            }
+        }
+        
+    }
+</script>
