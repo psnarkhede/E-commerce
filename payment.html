@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        h1{
+            text-align: center;
+        }
+
+        input{
+            margin-top: 20px;
+        }
+
+        form{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Payments Page</h1>
+
+    <form>
+        <input id="cardno" type="number" placeholder="enter card number"> <br>
+        <input id="cvv" type="number" placeholder="enter cvv"> <br>
+        <input id="date" type="month" placeholder="enter expiry date"> <br>
+        <input id="name" type="name" placeholder="enter name"> <br>
+        <input type="submit">
+    </form>
+</body>
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit", payfn)
+
+    function payfn(){
+        event.preventDefault();
+
+        var card = document.querySelector("#cardno").value;
+        var cvv = document.querySelector("#cvv").value;
+        var date = document.querySelector("#date").value;
+        var name = document.querySelector("#name").value;
+
+        if(card !== "123456789"){
+            alert("Wrong Card number")
+        }
+
+        if(cvv !== "123"){
+            alert("Wrong cvv")
+        }
+
+        if(card == "123456789" && cvv == "123" && name == "piyush narkhede"){
+            alert("Enter OTP sent to Phone");
+            window.location.href="OTP.html";
+        }
+
+    }
+</script>
